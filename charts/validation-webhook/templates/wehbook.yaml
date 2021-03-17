@@ -1,0 +1,53 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: ValidatingWebhookConfiguration
+metadata:
+  name: deployment-validator
+webhooks:
+  - name: validator.default.svc
+    clientConfig:
+      service:
+        name: validator
+        namespace: default
+        path: "/deployment"
+      caBundle: "paste base64 encoded ca cert here"
+    rules:
+      - operations: ["CREATE", "UPDATE"]
+        apiGroups: ["apps"]
+        apiVersions: ["v1"]
+        resources: ["deployments"]
+---
+# apiVersion: admissionregistration.k8s.io/v1beta1
+# kind: ValidatingWebhookConfiguration
+# metadata:
+#   name: daemonset-validator
+# webhooks:
+#   - name: validator.default.svc
+#     clientConfig:
+#       service:
+#         name: validator
+#         namespace: default
+#         path: "/daemonset"
+#       caBundle: "paste base64 encoded ca cert here"
+#     rules:
+#       - operations: ["CREATE", "UPDATE"]
+#         apiGroups: ["apps"]
+#         apiVersions: ["v1"]
+#         resources: ["daemonsets"]
+# ---
+# apiVersion: admissionregistration.k8s.io/v1beta1
+# kind: ValidatingWebhookConfiguration
+# metadata:
+#   name: statefulset-validator
+# webhooks:
+#   - name: validator.default.svc
+#     clientConfig:
+#       service:
+#         name: validator
+#         namespace: default
+#         path: "/statefulset"
+#       caBundle: "paste base64 encoded ca cert here"
+#     rules:
+#       - operations: ["CREATE", "UPDATE"]
+#         apiGroups: ["apps"]
+#         apiVersions: ["v1"]
+#         resources: ["statefulsets"]

@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+name: validation-webhook
+description: A Helm chart that runs a validation-webhook on kubernetes
+version:  0.0.1
+keywords:
+  - Webhook
+  - Json validator
+home: https://github.com/cuttingedge1109/validation-webhook
+maintainers:
+- name: cuttingedge1109
+  email: cuttingedge1109@gmail.com

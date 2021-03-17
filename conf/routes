@@ -7,7 +7,7 @@ module:testrunner
 # module:jobs
 
 
-POST    /validate                                App.Validate
+POST    /deployment                                App.Validate
 
 #GET     /                                       App.Index
 

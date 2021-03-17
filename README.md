@@ -17,7 +17,10 @@ Communication between Kubernetes API server and custom admission controler webho
     cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=validator validator.json | cfssljson -bare validator
 
 ### Build Docker Image
-Build a Docker image using the Dockerfile available under the root directory of this folder. Tag and push the image to a registry.
+```sh
+make docker-build
+make docker-push
+```
 
 ### Modification ( optional )
 1) If you have generated the certificates with a different name, update the below lines in the file 'app/conf/app.conf' to match the certificate names:  

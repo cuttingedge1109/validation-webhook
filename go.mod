@@ -1,5 +1,4 @@
-module github.com/stakater/validator
-
+module github.com/cuttingedge1109/validation-webhook
 go 1.15
 
 require (
