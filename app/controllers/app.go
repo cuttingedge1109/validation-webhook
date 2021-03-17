@@ -19,37 +19,36 @@ const (
 	AnnotationKey = "config.fluentd.com/config"
 )
 
+func (c App) returnFalse(msg string) revel.Result {
+	fmt.Println(msg)
+	response := v1beta1.AdmissionReview{
+		Response: &v1beta1.AdmissionResponse{
+			Allowed: false,
+			Result:  &metav1.Status{Message: strings.TrimSpace(msg)},
+		},
+	}
+	return c.RenderJSON(response)
+}
+
 func (c App) Validate() revel.Result {
 	var request v1beta1.AdmissionReview
 	var obj appsv1.Deployment
-	c.Params.BindJSON(&request)
+	if err := c.Params.BindJSON(&request); err != nil {
+		msg := "Error occurred while BindJSON params. Policy check will be skipped" + err.Error()
+		return c.returnFalse(msg)
+	}
 
 	rawObject := request.Request.Object.Raw
 
-	err := json.Unmarshal(rawObject, &obj)
-	if err != nil {
+	if err := json.Unmarshal(rawObject, &obj); err != nil {
 		msg := "Error occurred while deserializing request. Policy check will be skipped" + err.Error()
-		fmt.Println(msg)
-		response := v1beta1.AdmissionReview{
-			Response: &v1beta1.AdmissionResponse{
-				Allowed: false,
-				Result:  &metav1.Status{Message: strings.TrimSpace(msg)},
-			},
-		}
-		return c.RenderJSON(response)
+		return c.returnFalse(msg)
 	}
 
 	config, ok := obj.Annotations[AnnotationKey]
-
 	if ok {
 		if err := validateFluentdConfig(config); err != nil {
-			response := v1beta1.AdmissionReview{
-				Response: &v1beta1.AdmissionResponse{
-					Allowed: false,
-					Result:  &metav1.Status{Message: err.Error()},
-				},
-			}
-			return c.RenderJSON(response)
+			return c.returnFalse(err.Error())
 		}
 	}
 
