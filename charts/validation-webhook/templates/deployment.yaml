@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
       - name: webhook
-        image: arunmudaliar/validator:latest
+        image: cuttingedge1109/validation-webhook:latest
         ports:
         - containerPort: 443
