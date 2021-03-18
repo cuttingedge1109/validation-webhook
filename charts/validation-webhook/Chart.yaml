@@ -6,7 +6,7 @@ version:  0.0.1
 keywords:
   - Webhook
   - Json validator
-home: https://github.com/cuttingedge1109/validation-webhook
+home: https://github.com/cuttingedge1109/jsonschema-validation-webhook
 maintainers:
 - name: cuttingedge1109
   email: cuttingedge1109@gmail.com

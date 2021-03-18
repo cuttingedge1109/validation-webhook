@@ -1,4 +1,4 @@
-module github.com/cuttingedge1109/validation-webhook
+module github.com/cuttingedge1109/jsonschema-validation-webhook
 go 1.15
 
 require (

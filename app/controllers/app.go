@@ -45,9 +45,9 @@ func (c App) Validate() revel.Result {
 		return c.returnFalse(msg)
 	}
 
-	config, ok := obj.Annotations[AnnotationKey]
+	jsonBody, ok := obj.Annotations[AnnotationKey]
 	if ok {
-		if err := validateFluentdConfig(config); err != nil {
+		if err := validateJsonSchema(jsonBody); err != nil {
 			return c.returnFalse(err.Error())
 		}
 	}
@@ -61,14 +61,14 @@ func (c App) Validate() revel.Result {
 
 }
 
-func validateFluentdConfig(config string) error {
+func validateJsonSchema(jsonBody string) error {
 
 	schema, err := jsonschema.Compile("schemas/template.json")
 	if err != nil {
 		return err
 	}
 
-	if err = schema.Validate(strings.NewReader(config)); err != nil {
+	if err = schema.Validate(strings.NewReader(jsonBody)); err != nil {
 		return err
 	}
 

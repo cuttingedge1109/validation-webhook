@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: validator
+  name: jsonschema-validation-webhook
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: validator
+      app: jsonschema-validation-webhook
   template:
     metadata:
       labels:
-        app: validator
+        app: jsonschema-validation-webhook
     spec:
       containers:
       - name: webhook
-        image: cuttingedge1109/validation-webhook:latest
+        image: cuttingedge1109/jsonschema-validation-webhook:latest
         ports:
         - containerPort: 443

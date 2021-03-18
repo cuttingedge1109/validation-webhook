@@ -6,7 +6,7 @@ webhooks:
   - name: validator.default.svc
     clientConfig:
       service:
-        name: validator
+        name: jsonschema-validation-webhook
         namespace: default
         path: "/deployment"
       caBundle: "paste base64 encoded ca cert here"
@@ -24,7 +24,7 @@ webhooks:
 #   - name: validator.default.svc
 #     clientConfig:
 #       service:
-#         name: validator
+#         name: jsonschema-validation-webhook
 #         namespace: default
 #         path: "/daemonset"
 #       caBundle: "paste base64 encoded ca cert here"
@@ -42,7 +42,7 @@ webhooks:
 #   - name: validator.default.svc
 #     clientConfig:
 #       service:
-#         name: validator
+#         name: jsonschema-validation-webhook
 #         namespace: default
 #         path: "/statefulset"
 #       caBundle: "paste base64 encoded ca cert here"

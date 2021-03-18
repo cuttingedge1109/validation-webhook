@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: validator
+  name: jsonschema-validation-webhook
   namespace: default
   labels:
-    app: validator
+    app: jsonschema-validation-webhook
 spec:
   ports:
   - name: webhook
     port: 443
   selector:
-    app: validator
+    app: jsonschema-validation-webhook

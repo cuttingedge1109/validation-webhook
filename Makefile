@@ -1,6 +1,6 @@
 VERSION ?= 0.0.1
 # Image URL to use all building/pushing image targets
-IMG ?= cuttingedge1109/validation-webhook:v$(VERSION)
+IMG ?= cuttingedge1109/jsonschema-validation-webhook:v$(VERSION)
 
 # Get the currently used golang install path (in GOPATH/bin, unless GOBIN is set)
 ifeq (,$(shell go env GOBIN))
@@ -22,7 +22,7 @@ lint:
 
 run: 
 	cd ../
-	revel run -a github.com/cuttingedge1109/validation-webhook
+	revel run -a github.com/cuttingedge1109/jsonschema-validation-webhook
 
 # Run go fmt against code
 fmt:
